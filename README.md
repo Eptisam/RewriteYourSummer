@@ -1,2 +1,2 @@
 # RewriteYourSummer
-ResistBot Project
+Repository for ResistBot Project
