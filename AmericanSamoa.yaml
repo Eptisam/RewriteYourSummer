@@ -1,0 +1,166 @@
+contact_form:
+  steps:
+  	- visit: "https://dcforms.dc.gov/webform/executive-office-mayor-ask-mayor"
+
+  	#first time going on this website have to verify your zipcode 
+  	#doesn't ask you to do that afterwards. 
+
+  	#want to create a check and if it's there fill it out and then wait
+  	#if not then it takes you straight to the form
+
+  	- fill_in:
+  		- name: "zcl"
+  		  selector: "#edit-zcl"
+  		  value: "$ADDRESS_ZIP5"
+  		  required: true
+  	- click_on:
+        - value: "Go To Next Step"
+          selector: "input[type='submit'][name='dolookup']"
+    #It then takes you to a new page
+
+    - select:
+        - name: "submitted[contact][honorific]"
+          selector: "edit-submitted-contact-honorific"
+          value: "$NAME_PREFIX"
+          required: true
+          options:
+            "Ms.": "Ms."
+            "Miss.": "Miss."
+            "Mrs.": "Mrs."
+            "Mr.": "Mr."
+            "Mr. and Mrs.": "Mr. and Mrs."
+            "Rev.": "Rev."
+            "Dr.": "Dr."
+            "The Honorable": "The Honorable"
+            "Rabbi": "Rabbi"
+	- fill_in:
+  		- name: "submitted[contact][first_name]"
+  		  selector: "#edit-submitted-contact-first-name"
+  		  value: "$NAME_FIRST"
+  		  required: true
+  		- name: "submitted[contact][mi]"
+          selector: "edit-submitted-contact-mi"
+          value: ""
+        # max length: 5
+  		- name: "submitted[contact][last_name]"
+  		  selector: "#edit-submitted-contact-last-name"
+  		  value: "$NAME_LAST"
+  		  required: true
+  	- select:
+    	- name: "submitted[contact][suffix]"
+          selector: "#edit-submitted-contact-suffix"
+          value: ""
+          options:
+          	"selected": "None"
+          	"2nd": "2nd"
+          	"3rd": "3rd"
+          	"4th": "4th"
+          	"II": "II"
+          	"III": "III"
+          	"IV": "IV"
+          	"Jr.": "Jr."
+          	"Sr.": "Sr."
+          	"M.D.": "M.D."
+          	"PH.D.": "PH.D."
+          	"and Family": "and Family"
+    - fill_in:
+    	#called this section the PO Box but all the CSS/HTML stuff says st addr
+    	- name: "submitted[contact_add][address]"
+    	  selector: "#edit-submitted-contact-add-address"
+    	  value: "$ADDRESS_STREET"
+    	  required: true
+    	- name: "submitted[contact_add][city]"
+    	  selector: "#edit-submitted-contact-add-city"
+    	  value: "$ADDRESS_CITY"
+    	  required: true
+    #It automatically filled in the state and zipcode but adding it just in case       
+    	- name: "submitted[contact_add][state]"
+    	  selector: "#edit-submitted-contact-add-state"
+    	  value: "$ADDRESS_STATE_POSTAL_ABBREV"
+    	  required: true
+		- name: "submitted[contact_add][zip]"
+    	  selector: "#edit-submitted-contact-add-zip"
+    	  value: "$ADDRESS_ZIP5"
+    	  required: true
+		- name: "submitted[contact_add][email]"
+    	  selector: "#edit-submitted-contact-add-email"
+    	  value: "$EMAIL"
+    	  required: true
+    	- name: "submitted[telephone][number]"
+    	  selector: "#edit-submitted-telephone-number"
+    	  value: "$PHONE_PARENTHESES"
+    	  required: true
+    	#Phone type is next but skipping it and it's not required
+    - select:
+		- name: "submitted[additional][issue]"
+    	  selector: "#edit-submitted-additional-issue"
+    	  value: "$TOPIC"
+    	  required: true
+    	  options:
+    	  "AGR": "Agriculture"
+    	  "AN": "Animals"
+    	  "ART": "Arts and Humanities"
+    	  "BANK": "Banking and Finance"
+    	  "BUD": "Budget and Economy"
+    	  "Casework": "Help With a Federal Agency"
+ 		  "CFR": "Campaign Finance Reform"
+    	  "CONG":  Congress and Elections 
+    	  "DEF":  Defense and Military 
+    	  "ECON":  "Economy" 
+    	  "EDU":  "Education" 
+    	  "ENE":  "Energy" 
+    	  "ENV":  "Environment" 
+    	  "FED":  "Federal Employees" 
+    	  "FR": "Foreign Relations" 
+    	  "GOV":  "Government Reform" 
+    	  "GUN":  "Guns" 
+    	  "HEA":  "Health" 
+    	  "HOM":  "Homeland Security" 
+    	  "HUD":  "Housing and Urban Development" 
+    	  "IMM":  "Immigration" 
+    	  "INT":  "International Relations" 
+    	  "JUD":  "Judiciary" 
+    	  "LAB":  "Labor" 
+    	  "LGBT":  "LGBT" 
+    	  "NRN":  "No Response Necessary" 
+    	  "POST":  "Post Office" 
+    	  "SCI":  "Science and Technology" 
+    	  "SOC":  "Social Issues" 
+    	  "SENIORS":  "Senior Citizens" 
+    	  "SSEC":  "Social Security" 
+    	  "SOC.SERVICES":  "Social Services" 
+    	  "TAX":  "Taxes" 
+    	  "TEL":  "Telecommunications" 
+    	  "Tours":  "Tours" 
+    	  "TRA":  "Transportation" 
+    	  "TRADE":  "Trade" 
+    	  "VET":  "Veterans" 
+    	  "WOMEN":  "Women's Issues" 
+    	  "WEL":  "Welfare" 
+    	  "OTHER":  "Other Issue" 		 
+	- fill_in:
+		- name: "submitted[additional][comments]"
+    	  selector: "#edit-submitted-additional-comments"
+    	  value: "$MESSAGE"
+    	  required: true: 
+    - select:
+		- name: "ssubmitted[additional][response]"
+    	  selector: "#edit-submitted-additional-response"
+    	  value: ""
+    	  #don't know the variable for this
+    	  required: true
+    	  options:
+    	  	"selected": "- Select -"
+    	  	"y": "Yes, please contact me"
+    	  	"n": "No, I wanted to voice my opinion"
+    - javascript:
+        - value: "document.querySelector('#g-recaptcha-response').style.cssText = 'display: block; margin-top: 5em;';"
+    - recaptcha:
+        - value: true
+	- click_on:
+        - value: "Send Email"
+          selector: "input[type='submit'][name='op']"
+
+
+
+
