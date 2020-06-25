@@ -1,6 +1,6 @@
 contact_form:
   steps:
-  	- visit: "https://dcforms.dc.gov/webform/executive-office-mayor-ask-mayor"
+  	- visit: "https://radewagen.house.gov/contact/email-me?zip5=96799&zip4=&time=1593107073711120550r"
 
   	#first time going on this website have to verify your zipcode 
   	#doesn't ask you to do that afterwards. 
