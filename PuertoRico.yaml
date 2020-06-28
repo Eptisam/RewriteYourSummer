@@ -1,0 +1,147 @@
+bioguide: G000582
+contact_form:
+  method: post
+  action: "https://gonzalez-colon.house.gov/contact"
+  steps:
+    - visit: "https://gonzalez-colon.house.gov/contact"
+    - fill_in:
+      - name: required-zip5
+        value: "#required-zip5"
+        required: true
+      - name: zip4
+        selector: '#zip4'
+        value: $ADDRESS_ZIP4
+        required: false
+    - click on:
+      - value: "Go To Next Step"
+      - selector: "#submit"
+  # success:
+  #   body:
+  #     contains:
+  # retry:
+  #   -reason:
+
+    - select:
+      - name: "required-honorific-prefix"
+        selector: "required-honorific-prefix"
+        value: $NAME_PREFIX
+        required: true
+        options:
+          "Ms.": "Ms."
+          "Miss": "Miss"
+          "Mrs.": "Mrs."
+          "Mr.": "Mr."
+          "Mr. and Mrs.": "Mr. and Mrs."
+          "Rev.": "Rev."
+          "Dr.": "Dr."
+          "The Honorable": "The Honorable"
+          "Rabbi": "Rabbi"
+    - fill_in:
+      - name: "required-first"
+        selector: "#required-first"
+        value: $NAME_FIRST
+        required: true
+      - name: "required-last"
+        selector: "#required-last"
+        value: $NAME_FIRST
+        required: true
+      - name: "required-address"
+        selector: "#required-address"
+        value: $ADDRESS_STREET
+        required: true
+      - name: "required-city"
+        selector: "#required-city"
+        value: $ADDRESS_CITY
+        required: true
+      - name: "required-valid-email"
+        selector: "#required-valid-email"
+        value: $EMAIL
+        required: true
+      - name: "required-phone"
+        selector: "#required-phone"
+        value: $PHONE
+        required: true
+      - name: "required-first"
+        selector: "#required-first"
+        value: $NAME_FIRST
+        required: true
+    - select:
+      - name: "speech"
+        selector: "#speech"
+        options:
+          "Voice": "Voice"
+          "VP": "VP"
+          "TTD": "TTD"
+     - select:
+        - name: "required-issue"
+          selector: "#required_issue"
+          value: $TOPIC
+          required: true
+          options:
+            "Agriculture": "Agriculture"
+            "Animals": "Animals"
+            "Arts and Humanities": "Arts and Humanities"
+            "Banking and Finance": "Banking and Finance"
+            "Budget and Economy": "Budget and Economy"
+            "Help With a Federal Agency": "Help With a Federal Agency"
+            "Campaign Finance Reform": "Campaign Finance Reform"
+            "Congress and Elections": "Congress and Elections"
+            "Defense and Military": "Defense and Military"
+            "Economy": "Economy"
+            "Education": "Education"
+            "Energy": "Energy"
+            "Environment": "Environment"
+            "Federal Employees": "Federal Employees"
+            "Foreign Relations": "Foreign Relations"
+            "Government Reform": "Government Reform"
+            "Guns": "Guns"
+            "Health": "Health"
+            "Homeland Security": "Homeland Security"
+            "Housing and Urban Development": "Housing and Urban Development"
+            "Immigration": "Immigration"
+            "International Relations":   "International Relations"
+            "Judiciary": "Judiciary"
+            "Labor": "Labor"
+            "LGBT": "LGBT"
+            "Post Office": "Post Office"
+            "Science and Technology": "Science and Technology"
+            "Social Issues": "Social Issues"
+            "Senior Citizens": "Senior Citizens"
+            "Social Security": "Social Security"
+            "Social Services": "Social Services"
+            "Taxes": "Taxes"
+            "Telecommunications": "Telecommunications"
+            "Tours": "Tours"
+            "Transportation": "Transportation"
+            "Trade": "Trade"
+            "Veterans": "Veterans"
+            "Women's Issues": "Women's Issues"
+            "Welfare":   "Welfare"
+            "Other Issue": "Other Issue"
+    - fill_in:
+      - name: "required-message"
+        selector: "#required-message"
+        value: $MESSAGE
+        required: true
+    - select:
+      - name: "required-response"
+        selector: "#required_response"
+        required: true
+        options:
+          "Yes, please contact me": "Yes, please contact me"
+          "No, I wanted to voice my opinion": "No, I wanted to voice my opinion"
+    - choose:
+      - name: "subscribe"
+        selector: "#subscribe"
+        value: #not sure of the value for this
+
+    - recaptcha:
+        - value: true
+    - click_on:
+        - value: "Send Email to Representative González-Colón"
+          selector: "#submit"
+    success:
+      headers:
+        status: 200
+      body:
+        contains: your message has been sent.
