@@ -1,0 +1,24 @@
+contact_form:
+  steps:
+    - visit: "https://mayor.baltimorecity.gov/node/28"
+    - fill_in:
+        - name: "submitted[name]"
+          selector: "#edit-submitted-name"
+          value: $NAME_FULL
+          required: true
+          # max length: 128
+        - name: "submitted[email]"
+          selector: "#edit-submitted-email"
+          value: $EMAIL
+          required: true
+        - name: "submitted[message]"
+          selector: "#edit-submitted-message"
+          value: $MESSAGE
+    - recaptcha:
+        - value: true
+    - click_on:
+        - value: "Submit"
+          selector: "primary button form-submit"
+  success:
+    body:
+      contains: "Your feedback has been received"
