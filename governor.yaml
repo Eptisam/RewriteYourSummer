@@ -1,0 +1,30 @@
+bioguide:
+contact_form:
+  steps:
+    - visit: "https://ltg.gov.vi/contact-us/"
+    - fill_in:
+        - name: "contact_full_name_0"
+          selector: "#contact_full_name_0"
+          value: $FULL_NAME
+          required: true
+    - fill_in:
+        - name: "contact_email_0"
+          selector: "#contact_email_0"
+          value: $EMAIL
+          required: true
+    - fill_in:
+        - name: "contact_phone_0"
+          selector: "#contact_phone_0"
+          value: $PHONE
+          required: true
+    - fill_in:
+        - name: "contact_message_0"
+          selector: "#contact_message_0"
+          value: $MESSAGE
+          required: true
+    - click_on:
+        - value: "Sumbit Now"
+          selector: "#submit"
+  success:
+    body:
+      contains: "Thank you for your message. It has been sent."
