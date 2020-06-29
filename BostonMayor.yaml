@@ -1,0 +1,23 @@
+contact_form:
+  steps:
+    - visit: https://www.martywalsh.org/contact/
+
+    - fill_in:
+      - name: "your-name"
+        selector: "wpcf7-form-control.wpcf7-text.wpcf7-validates-as-required"
+        value: $NAME_FULL
+        required: true
+      - name: "your-email"
+        selector: "wpcf7-form-control.wpcf7-text.wpcf7-email.wpcf7-validates-as-required.wpcf7-validates-as-email"
+        value: "$EMAIL"
+        required: true
+      - name: "your-subject"
+        selector: "wpcf7-form-control.wpcf7-text"
+        value: $TOPIC"
+      - name: "your-message"
+        selector: "wpcf7-form-control.wpcf7-textarea"
+        value: "$MESSAGE"
+    - click_on:
+      - value: "Send"
+        selector: "wpcf7-form-control.wpcf7-submit"
+
