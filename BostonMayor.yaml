@@ -1,7 +1,6 @@
 contact_form:
   steps:
     - visit: https://www.martywalsh.org/contact/
-
     - fill_in:
       - name: "your-name"
         selector: "wpcf7-form-control.wpcf7-text.wpcf7-validates-as-required"
