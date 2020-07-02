@@ -1,0 +1,40 @@
+contact_form:
+  steps:
+    - visit: http://www.grovecityohio.gov/contact-us/
+    - fill_in:
+      - name: "input_1.3"
+        selector: "input_19_1_3"
+        value: $NAME_FIRST
+        required: true
+      - name: "input_1.6"
+        selector: "input_19_1_6"
+        value: $NAME_LAST
+        required: true
+      - name: "input_2"
+        selector: "input_19_2"
+        value: $EMAIL
+        required: false
+      - name: "input_3"
+        selector: "input_19_3"
+        value: $PHONE
+        required: false
+      - name: "input_7"
+        selector: "input_19_7"
+        value: $ADDRESS_FULL
+        required: false
+      - name: "input_4"
+        selector: "input_19_4"
+        value: $TOPIC
+        required: true
+      - name: "input_5"
+        selector: "input_19_5"
+        value: $MESSAGE
+        required: true
+    - click_on:
+      - value: "Submit"
+      - selector: "gform_submit_button_19"
+  success:
+    headers:
+      status: 200
+    body:
+      contains: "Thanks for contacting us! We will get in touch with you shortly"
