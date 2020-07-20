@@ -1,0 +1,91 @@
+bioguide:
+contact_form:
+  steps:
+    - visit: "https://www1.nyc.gov/office-of-the-mayor/mayor-contact.page"
+    - select:
+        - name: "submitted[message][topic]"
+          selector: "#edit-submitted-message-topic"
+          value: "$MESSAGE_TOPIC"
+          required: true
+          options:
+            "Budget": "Budget"
+            "Education": "Education"
+            "Environmental Conerns": "Environmental Conerns"
+            "General Views": "General Views"
+            "Homelessness": "Homelessness"
+            "Housing": "Housing"
+            "Ideas or Suggestions": "Ideas or Suggestions"
+            "Public Safety": "Public Safety"
+            "Quality of Life": "Quality of Life"
+            "Request for Assistant": "Request for Assistant"
+            "Scheduling Requests": "Scheduling Requests"
+            "Traffic Safety": "Traffic Safety"
+            "TRA": "Transportation"
+            "OTHER": "Other"
+    - fill_in:
+        - name: "contact_message_0"
+          selector: "#contact_message_0"
+          value: $MESSAGE
+          required: true
+        - name: "contact_prefix_0"
+          selector: "#contact_prefix_0"
+          value: $PREFIX
+          required: false
+        - name: "contact_first_name_0"
+          selector: "#contact_first_name_0"
+          value: $FIRST_NAME
+          required: false
+        - name: "contact_middle_name_0"
+          selector: "#contact_middle_name_0"
+          value: $MIDDLE_NAME
+          required: false
+        - name: "contact_last_name_0"
+          selector: "#contact_last_name_0"
+          value: $LAST_NAME
+          required: false
+        - name: "contact_suffix_0"
+          selector: "#contact_suffix_0"
+          value: $SUFFIX
+          required: false
+        - name: "contact_company_0"
+          selector: "#contact_company_0"
+          value: $COMPANY
+          required: false
+        - name: "contact_address_1"
+          selector: "#contact_address_1"
+          value: $ADDRESS1
+          required: false
+        - name: "contact_address_2"
+          selector: "#contact_address_2"
+          value: $ADDRESS2
+          required: false
+        - name: "contact_city_0"
+          selector: "#contact_city_0"
+          value: $CITY
+          required: false
+        - name: "contact_state_0"
+          selector: "#contact_state_0"
+          value: $STATE
+          required: false
+        - name: "contact_zip_code_0"
+          selector: "#contact_zip_code_0"
+          value: $ZIP
+          required: true
+        - name: "contact_country_0"
+          selector: "#contact_country_0"
+          value: $COUNTRY
+          required: false
+        - name: "contact_phone_0"
+          selector: "#contact_phone_0"
+          value: $PHONE
+          required: false
+        - name: "contact_email_0"
+          selector: "#contact_email_0"
+          value: $EMAIL
+          required: true
+    - click_on:
+        - value: "Sumbit"
+          selector: "#submit"
+  success:
+    body:
+      contains: "Thank you for your message. It has been sent."

@@ -1,0 +1,27 @@
+bioguide:
+contact_form:
+  steps:
+    - visit: "https://cityoflasvegas.formstack.com/forms/contact_main?who+to+contact=Mayor"
+    - fill_in:
+        - name: "contact_full_name_0"
+          selector: "#contact_full_name_0"
+          value: $FULL_NAME
+          required: false
+        - name: "contact_comments_0"
+          selector: "#contact_comments_0"
+          value: $COMMENTS
+          required: true
+        - name: "contact_phone_0"
+          selector: "#contact_phone_0"
+          value: $PHONE
+          required: false
+        - name: "contact_email_0"
+          selector: "#contact_email_0"
+          value: $EMAIL
+          required: false
+    - click_on:
+        - value: "Sumbit Form"
+          selector: "#submit"
+  success:
+    body:
+      contains: "Thank you for your message. It has been sent."
