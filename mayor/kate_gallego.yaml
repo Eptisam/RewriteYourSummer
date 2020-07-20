@@ -1,0 +1,51 @@
+bioguide:
+contact_form:
+  steps:
+    - visit: "https://www.phoenix.gov/mayor/contact-mayor-gallego"
+    - fill_in:
+        - name: "contact_full_name_0"
+          selector: "#contact_full_name_0"
+          value: $FULL_NAME
+          required: true
+        - name: "contact_email_0"
+          selector: "#contact_email_0"
+          value: $EMAIL
+          required: true
+        - name: "contact_area_code_0"
+          selector: "#contact_area_code_0"
+          value: $AREA_CODE
+          required: false
+        - name: "contact_phone_0"
+          selector: "#contact_phone_0"
+          value: $PHONE
+          required: false
+        - name: "contact_address_0"
+          selector: "#contact_address_0"
+          value: $ADDRESS
+          required: true
+        - name: "contact_city_0"
+          selector: "#contact_city_0"
+          value: $CITY
+          required: false
+        - name: "contact_state_0"
+          selector: "#contact_state_0"
+          value: $STATE
+          required: false
+        - name: "contact_zip_code_0"
+          selector: "#contact_zip_code_0"
+          value: $ZIP
+          required: false
+        - name: "contact_subject_0"
+          selector: "#contact_subject_0"
+          value: $MESSAGE
+          required: true
+        - name: "contact_message_0"
+          selector: "#contact_message_0"
+          value: $MESSAGE
+          required: true
+    - click_on:
+        - value: "Send"
+          selector: "#submit"
+  success:
+    body:
+      contains: "Thank you for your message. It has been sent."
