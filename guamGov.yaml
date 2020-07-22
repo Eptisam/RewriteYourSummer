@@ -1,0 +1,31 @@
+
+contact_form:
+  steps:
+    - visit: "https://governor.guam.gov/contact-us/"
+    - fill_in:
+        - name: "et_pb_contact_first_name_0"
+          selector: "#et_pb_contact_first_name_0"
+          value: $NAME_FIRST
+          required: true
+        - name: "et_pb_contact_last_name_0"
+          selector: "#et_pb_contact_last_name_0"
+          value: $NAME_LAST
+          required: true
+        - name: "et_pb_contact_email_0"
+          selector: "#et_pb_contact_email_0"
+          value: $EMAIL
+          required: true
+        - name: "et_pb_contact_subject_0"
+          selector: "#et_pb_contact_subject_0"
+          value: $SUBJECT
+          required: true
+        - name: "et_pb_contact_message_0"
+          selector: "#et_pb_contact_message_0"
+          value: $MESSAGE
+          required: true
+    - click_on:
+        - value: "1817d2c8be"
+          selector: "#_wpnonce-et-pb-contact-form-submitted-0"
+  success:
+    body:
+      contains: "Thank you for your message"
